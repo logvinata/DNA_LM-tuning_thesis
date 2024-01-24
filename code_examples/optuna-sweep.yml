@@ -1,0 +1,73 @@
+# The program to run
+program: wandb_for_sweep_DNABert_prom_300_adapter.py
+
+# Method can be grid, random or bayes
+# don't use with optuna
+# method: random
+
+# Project this sweep is part of
+project: DNA_BERT_sweeps_prom_300
+
+
+# Metric to optimize
+metric:
+  name: eval/matthews_correlation
+  goal: maximize
+  
+  
+  
+#here comes optuna scheduler
+scheduler:
+   settings:
+      sampler:
+        # https://optuna.readthedocs.io/en/stable/reference/samplers/generated/optuna.samplers.CmaEsSampler.html
+        type: TPESampler
+        args:
+           seed: 42
+           n_startup_trials: 10
+pruner:
+        # https://optuna.readthedocs.io/en/stable/reference/generated/optuna.pruners.PercentilePruner.html
+        type: PercentilePruner
+        args:
+           percentile: 15.0  # kill 75% of runs
+           n_warmup_steps: 6000  # pruning disabled for first x steps
+
+
+
+
+
+# Parameters space to search
+parameters:
+  
+  learning_rate:
+    distribution: log_uniform_values
+    min: 2e-5
+    max: 2e-4
+#   batch_size:
+#     values: [4, 8, 16]
+#   original_ln_after:
+#     values: [True, False]
+  original_ln_before:
+    values: [True, False]
+  weight_decay: 
+    distribution: log_uniform_values
+    min: 0.0002
+    max: 0.02
+  reduction_factor:
+    values: [2, 8, 16]
+  warmup_ratio:  
+    values: [0.1, 0.2]
+  phm_param.phm_layer: 
+    values: [True, False]
+  phm_param.phm_dim : 
+    values: [2, 4, 8]
+  phm_param.phm_rank : 
+    values: [1, 2]
+#   non_linearity: 
+#     values: ['swish', 'gelu']
+#   grad_accum: 
+#     value: [False, True],
+#   gradient_accumulation_steps: 
+#       value: [1, 2, 4]
+  #grad_accumulation
+  
