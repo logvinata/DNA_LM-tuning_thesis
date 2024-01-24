@@ -1,0 +1,47 @@
+# The program to run
+program: wandb_for_sweep_DNABert_prom_300_adapter.py
+
+# Method can be grid, random or bayes
+method: random
+
+# Project this sweep is part of
+project: DNA_BERT_sweeps_prom_300
+
+
+# Metric to optimize
+metric:
+  name: eval/matthews_correlation
+  goal: maximize
+
+
+# Parameters space to search
+parameters:
+  
+  learning_rate:
+    distribution: log_uniform_values
+    min: 1e-5
+    max: 1e-3
+#   batch_size:
+#     values: [4, 8, 16]
+#   original_ln_after:
+#     values: [True, False]
+  original_ln_before:
+    values: [True, False]
+  weight_decay: 
+    distribution: log_uniform_values
+    min: 0.0002
+    max: 0.1
+  reduction_factor:
+    values: [2, 8, 16]
+  warmup_ratio:  
+    values: [0.1, 0.2]
+  phm_param.phm_layer: 
+      values: [True, True, True, True, True, True, True, True, True, False]
+#   non_linearity: 
+#     values: ['swish', 'gelu']
+#   grad_accum: 
+#     value: [False, True],
+#   gradient_accumulation_steps: 
+#       value: [1, 2, 4]
+  #grad_accumulation
+  
