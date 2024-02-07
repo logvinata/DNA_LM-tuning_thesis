@@ -13,10 +13,16 @@ import transformers
 import wandb
 from datasets import load_dataset
 from sklearn import metrics
-from transformers import (AdapterConfig, AutoConfig,
-                          AutoModelForSequenceClassification, AutoTokenizer,
-                          BertModelWithHeads, EarlyStoppingCallback, Trainer,
-                          TrainingArguments)
+from transformers import (
+    AdapterConfig,
+    AutoConfig,
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+    BertModelWithHeads,
+    EarlyStoppingCallback,
+    Trainer,
+    TrainingArguments,
+)
 
 if torch.cuda.is_available():
     print(torch.cuda.get_device_name(0))

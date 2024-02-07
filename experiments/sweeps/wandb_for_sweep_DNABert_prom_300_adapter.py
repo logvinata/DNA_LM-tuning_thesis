@@ -93,9 +93,15 @@ import transformers
 import wandb
 from datasets import load_dataset
 from sklearn import metrics
-from transformers import (AdapterConfig, AutoConfig, AutoTokenizer,
-                          BertModelWithHeads, EarlyStoppingCallback, Trainer,
-                          TrainingArguments)
+from transformers import (
+    AdapterConfig,
+    AutoConfig,
+    AutoTokenizer,
+    BertModelWithHeads,
+    EarlyStoppingCallback,
+    Trainer,
+    TrainingArguments,
+)
 
 # In[8]:
 

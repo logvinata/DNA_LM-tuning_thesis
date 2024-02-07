@@ -30,9 +30,15 @@ import wandb
 from datasets import load_dataset
 from optuna.integration.wandb import WeightsAndBiasesCallback
 from sklearn import metrics
-from transformers import (AdapterConfig, AutoConfig, AutoTokenizer,
-                          BertModelWithHeads, EarlyStoppingCallback, Trainer,
-                          TrainingArguments)
+from transformers import (
+    AdapterConfig,
+    AutoConfig,
+    AutoTokenizer,
+    BertModelWithHeads,
+    EarlyStoppingCallback,
+    Trainer,
+    TrainingArguments,
+)
 
 
 # ## Utils

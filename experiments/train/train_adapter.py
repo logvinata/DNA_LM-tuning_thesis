@@ -20,10 +20,16 @@ import transformers
 import wandb
 from datasets import load_dataset
 from sklearn import metrics
-from transformers import (AdapterConfig, AutoConfig,
-                          AutoModelForSequenceClassification, AutoTokenizer,
-                          BertModelWithHeads, EarlyStoppingCallback, Trainer,
-                          TrainingArguments)
+from transformers import (
+    AdapterConfig,
+    AutoConfig,
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+    BertModelWithHeads,
+    EarlyStoppingCallback,
+    Trainer,
+    TrainingArguments,
+)
 
 # util functions
 # from train_utils import (
