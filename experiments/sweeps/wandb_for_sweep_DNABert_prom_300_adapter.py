@@ -1,6 +1,36 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# Install and import
+
+import os
+import random
+import sys
+
+import evaluate as eval
+import numpy as np
+import torch
+import wandb
+from datasets import load_dataset
+# from sklearn import metrics
+from transformers import (
+    AdapterConfig,
+    AutoConfig,
+    AutoTokenizer,
+    BertModelWithHeads,
+    EarlyStoppingCallback,
+    Trainer,
+    TrainingArguments,
+)
+
+
+if torch.cuda.is_available():
+    print(torch.cuda.get_device_name(0))
+else:
+    print("NO CUDA!!!")
+    sys.exit(1)
+
+
 #  Drive, paths and config
 data_path = "../datasets/promoters/promoters_300/"
 split_path = data_path + "train-val-test_split/"
@@ -44,42 +74,6 @@ parameters = {
     "original_ln_after": True,
     "phm_param": phm_param,
 }
-
-
-# Install and import
-
-import sys
-
-import torch
-
-import os
-import random
-
-import evaluate as eval
-import numpy as np
-import pandas as pd
-import sklearn
-import transformers
-import wandb
-from datasets import load_dataset
-from sklearn import metrics
-from transformers import (
-    AdapterConfig,
-    AutoConfig,
-    AutoTokenizer,
-    BertModelWithHeads,
-    EarlyStoppingCallback,
-    Trainer,
-    TrainingArguments,
-)
-
-
-if torch.cuda.is_available():
-    print(torch.cuda.get_device_name(0))
-else:
-    print("NO CUDA!!!")
-    sys.exit(1)
-
 
 # the model is really unstable
 # this has to be set before loading the model and tokenizer
@@ -140,6 +134,7 @@ def add_adapter(model, parameters):
 
 # Start with loading kmers
 
+
 def load_data(small=False):
     train_6mers = load_dataset(
         "csv",
@@ -179,13 +174,14 @@ def tokenization(sequences_batch):
         return_attention_mask=True,
         return_tensors="pt",
     )
+
+
 def tokenize_data(train_6mers, val_6mers, test_6mers, tokenization=tokenization):
     train = train_6mers.map(tokenization, batched=True, batch_size=len(train_6mers))
     val = val_6mers.map(tokenization, batched=True, batch_size=len(val_6mers))
     test = test_6mers.map(tokenization, batched=True, batch_size=len(test_6mers))
     print(train, val, test)
     return train, val, test
-
 
 
 # define metrics
@@ -208,9 +204,7 @@ def compute_metrics(val_pred):
     combined_metrics = eval.combine([accuracy, precision, recall, f1, mcc])
 
     # Compute metrics
-    metrics_scores = combined_metrics.compute(
-        predictions=predictions, references=labels
-    )
+    metrics_scores = combined_metrics.compute(predictions=predictions, references=labels)
 
     return metrics_scores
 
