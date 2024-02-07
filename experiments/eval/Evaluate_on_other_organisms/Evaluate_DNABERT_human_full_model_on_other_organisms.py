@@ -1,28 +1,23 @@
 # Import
 
-import csv
 import os
 import random
 import sys
 
-import datasets
 import evaluate as eval
 import numpy as np
 import pandas as pd
-import sklearn
 import torch
-import transformers
 import wandb
 from datasets import load_dataset
 from sklearn import metrics
-from transformers import (
-    AutoConfig,
+from transformers import (  # EarlyStoppingCallback,
     AutoModelForSequenceClassification,
     AutoTokenizer,
-    EarlyStoppingCallback,
     Trainer,
     TrainingArguments,
 )
+
 
 if torch.cuda.is_available():
     print(torch.cuda.get_device_name(0))
@@ -102,9 +97,7 @@ def compute_metrics(val_pred):
     combined_metrics = eval.combine([accuracy, precision, recall, f1, mcc])
 
     # Compute metrics
-    metrics_scores = combined_metrics.compute(
-        predictions=predictions, references=labels
-    )
+    metrics_scores = combined_metrics.compute(predictions=predictions, references=labels)
 
     return metrics_scores
 
@@ -113,7 +106,7 @@ if __name__ == "__main__":
     set_seed(0)
     x = [
         f.name
-        for f in os.scandir(f"../../datasets/promoters/EPD_data/EPD_data_csv")
+        for f in os.scandir("../../datasets/promoters/EPD_data/EPD_data_csv")
         if f.is_file()
     ]
     for f in x:

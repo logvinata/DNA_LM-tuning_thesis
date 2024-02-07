@@ -1,17 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## Drive, paths and config
-
-# In[1]:
-
-
+#  Drive, paths and config
 data_path = "../datasets/promoters/promoters_300/"
 split_path = data_path + "train-val-test_split/"
-
-
-# In[3]:
-
 
 # additional parameters for adapters phm ( parameterized hypercomplex multiplication layers)
 # used by default in this version of HF adapters for pfiefer adapters
@@ -33,10 +25,6 @@ phm_param = {
 
 
 # I only use one type of adapters in this sweep for simplicity and clarity of parameters configuration
-
-# In[4]:
-
-
 parameters = {
     "seed": 0,
     # 'model_name': 'zhihan1996/DNA_bert_6',
@@ -58,33 +46,15 @@ parameters = {
 }
 
 
-# ## Install and import
-
-# In[5]:
-
+# Install and import
 
 import sys
 
 import torch
 
-# In[6]:
-
-
-if torch.cuda.is_available():
-    print(torch.cuda.get_device_name(0))
-else:
-    print("NO CUDA!!!")
-    sys.exit(1)
-
-
-# In[7]:
-
-
-import csv
 import os
 import random
 
-import datasets
 import evaluate as eval
 import numpy as np
 import pandas as pd
@@ -103,10 +73,12 @@ from transformers import (
     TrainingArguments,
 )
 
-# In[8]:
 
-
-# In[9]:
+if torch.cuda.is_available():
+    print(torch.cuda.get_device_name(0))
+else:
+    print("NO CUDA!!!")
+    sys.exit(1)
 
 
 # the model is really unstable
@@ -124,11 +96,7 @@ def set_seed(seed: int = 0) -> None:
     print(f"Random seed set as {seed}")
 
 
-# ## Load and Construct model and tokenizer
-
-# In[10]:
-
-
+#  Load and Construct model and tokenizer
 def load_model():
     model_config = AutoConfig.from_pretrained(
         "zhihan1996/DNA_bert_6", num_labels=2, trust_remote_code=True
@@ -141,11 +109,7 @@ def load_model():
     return model_config, model
 
 
-# ### Add Adapter
-
-# In[11]:
-
-
+# Add Adapter
 def add_adapter(model, parameters):
     # Define an adapter configuration
     adapter_config = AdapterConfig.load(
@@ -172,15 +136,9 @@ def add_adapter(model, parameters):
     return model
 
 
-# In[ ]:
+# Dataset
 
-
-# ## Dataset
-
-# ### Start with loading kmers
-
-# In[12]:
-
+# Start with loading kmers
 
 def load_data(small=False):
     train_6mers = load_dataset(
@@ -208,12 +166,7 @@ def load_data(small=False):
     return train_6mers, val_6mers, test_6mers
 
 
-# ### Tokenize
-
-# In[13]:
-
-
-# tokenize them
+# Tokenize
 def tokenization(sequences_batch):
     tokenizer = AutoTokenizer.from_pretrained(
         "zhihan1996/DNA_bert_6", do_lower_case=False, trust_remote_code=True
@@ -226,11 +179,6 @@ def tokenization(sequences_batch):
         return_attention_mask=True,
         return_tensors="pt",
     )
-
-
-# In[14]:
-
-
 def tokenize_data(train_6mers, val_6mers, test_6mers, tokenization=tokenization):
     train = train_6mers.map(tokenization, batched=True, batch_size=len(train_6mers))
     val = val_6mers.map(tokenization, batched=True, batch_size=len(val_6mers))
@@ -239,23 +187,13 @@ def tokenize_data(train_6mers, val_6mers, test_6mers, tokenization=tokenization)
     return train, val, test
 
 
-# ## Train
 
-# In[ ]:
-
-
-# In[15]:
-
-
-# #define metrics
-
+# define metrics
 # accuracy = eval.load("accuracy")
 # precision = eval.load("precision")
 # recall = eval.load("recall")
 # f1 = eval.load("f1")
 # mcc = eval.load("matthews_correlation")
-
-
 def compute_metrics(val_pred):
     logits, labels = val_pred
     predictions = np.argmax(logits, axis=-1)
@@ -275,9 +213,6 @@ def compute_metrics(val_pred):
     )
 
     return metrics_scores
-
-
-# In[16]:
 
 
 def save_all(run, trainer, test):
@@ -354,9 +289,6 @@ def save_all(run, trainer, test):
 #     model=wandb.Artifact(model_name, type="model",
 #                      description="baseline")
 #     run.log_artifact(model, aliases=['adapter tuning', 'baseline', model_name])
-
-
-# In[17]:
 
 
 def training_script(parameters=parameters, small=True, log=True):
@@ -465,10 +397,4 @@ def training_script(parameters=parameters, small=True, log=True):
     run.finish()
 
 
-# In[ ]:
-
-
 training_script(small=False, log=True)
-
-
-# In[ ]:

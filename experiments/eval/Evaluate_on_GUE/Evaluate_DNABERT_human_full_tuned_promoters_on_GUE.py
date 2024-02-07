@@ -1,28 +1,23 @@
 # Import
 
-import csv
 import os
 import random
 import sys
 
-import datasets
 import evaluate as eval
 import numpy as np
 import pandas as pd
-import sklearn
 import torch
-import transformers
 import wandb
 from datasets import load_dataset
 from sklearn import metrics
-from transformers import (
-    AutoConfig,
+from transformers import (  # EarlyStoppingCallback,
     AutoModelForSequenceClassification,
     AutoTokenizer,
-    EarlyStoppingCallback,
     Trainer,
     TrainingArguments,
 )
+
 
 if torch.cuda.is_available():
     print(torch.cuda.get_device_name(0))
@@ -102,9 +97,7 @@ def compute_metrics(val_pred):
     combined_metrics = eval.combine([accuracy, precision, recall, f1, mcc])
 
     # Compute metrics
-    metrics_scores = combined_metrics.compute(
-        predictions=predictions, references=labels
-    )
+    metrics_scores = combined_metrics.compute(predictions=predictions, references=labels)
 
     return metrics_scores
 
@@ -124,7 +117,7 @@ if __name__ == "__main__":
         print(organism, task, feature, length)
         # dataset_name = f"{organism}_{feature}_{task}_{length}"
         notebook_name = f"DNABERT_human_full_tuned_old-promoters_evaluate_on_{dataset_name}"  # just convenience
-        project_name = f"evaluate_on_GUE"
+        project_name = "evaluate_on_GUE"
         model_name = "DNABERT_human_promoters"
         group = f"{organism}_{task}"
         tag = model_name

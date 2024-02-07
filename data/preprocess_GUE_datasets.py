@@ -1,11 +1,7 @@
 # read the files
-import os
-
-import datasets
 import pandas as pd
 import wandb
-from datasets import Dataset, load_dataset
-from datasets.dataset_dict import DatasetDict
+from datasets import load_dataset
 
 # list of datasets in the same folder
 from datasets_list import datasets_list
@@ -42,7 +38,7 @@ if __name__ == "__main__":
         print(organism, task, feature, length)
         dataset_name = f"{organism}_{feature}_{task}_{length}"
         notebook_name = f"wandb_GUE_{dataset_name}_dataset_upload"  # just convenience
-        project_name = f"upload_GUE_datasets"
+        project_name = "upload_GUE_datasets"
 
         # dirs for this dataset
         data_path = f"{organism}_{task}_{length}/{dataset_name}/"
@@ -90,7 +86,7 @@ if __name__ == "__main__":
         run.log_artifact(split_data)
         run.finish()
 
-        ## Make 6-mers for DNABERT
+        # Make 6-mers for DNABERT
 
         k_mer_train = train.map(
             lambda batch: {
@@ -123,7 +119,7 @@ if __name__ == "__main__":
 
         with wandb.init(
             project=project_name,
-            job_type="upload"
+            job_type="upload",
             # save_code=True, # upload code to wandb
         ) as run:
             artifact = run.use_artifact(

@@ -3,35 +3,30 @@
 
 # ## Drive, paths and config
 
-import csv
 import os
 import random
 import sys
 
-import datasets
 import evaluate as eval
 
 # Import
 import fusion_tasks
 import numpy as np
 import pandas as pd
-import sklearn
 import torch
-import transformers
 import wandb
 from datasets import load_dataset
 from sklearn import metrics
 from transformers import (
     AdapterConfig,
     AutoConfig,
-    AutoModelForSequenceClassification,
     AutoTokenizer,
     BertModelWithHeads,
     EarlyStoppingCallback,
     Trainer,
     TrainingArguments,
 )
-from transformers.adapters.composition import Fuse
+
 
 if torch.cuda.is_available():
     print(torch.cuda.get_device_name(0))
@@ -50,32 +45,6 @@ else:
 #     save_all,
 # )
 
-
-import csv
-import os
-import random
-import sys
-
-import datasets
-import evaluate as eval
-import numpy as np
-import pandas as pd
-import sklearn
-import torch
-import transformers
-import wandb
-from datasets import load_dataset
-from sklearn import metrics
-from transformers import (
-    AdapterConfig,
-    AutoConfig,
-    AutoModelForSequenceClassification,
-    AutoTokenizer,
-    BertModelWithHeads,
-    EarlyStoppingCallback,
-    Trainer,
-    TrainingArguments,
-)
 
 if torch.cuda.is_available():
     print(torch.cuda.get_device_name(0))
@@ -255,9 +224,7 @@ def compute_metrics(val_pred):
     combined_metrics = eval.combine([accuracy, precision, recall, f1, mcc])
 
     # Compute metrics
-    metrics_scores = combined_metrics.compute(
-        predictions=predictions, references=labels
-    )
+    metrics_scores = combined_metrics.compute(predictions=predictions, references=labels)
 
     return metrics_scores
 
@@ -285,9 +252,7 @@ def save_all_fusion(
             description=f"DNABERT_adapters_for_fusion_{fusion_name}",
         )
         artifact.add_dir(f"./adapters_for_fusion_/{model_name}")
-        run.log_artifact(
-            artifact, aliases=[f"{dataset_name}_{fusion_name}_adapters_set"]
-        )
+        run.log_artifact(artifact, aliases=[f"{dataset_name}_{fusion_name}_adapters_set"])
 
     if save_fusion:
         model.save_adapter_fusion(f"./adapters_fusion/{model_name}", fusion_name)
@@ -329,9 +294,6 @@ def save_all_fusion(
 
     #     # predictions
 
-    description = (
-        f"{model_name} predictions with probabilities from model after run {run.name}"
-    )
     if not is_sweep:
         model_pred = wandb.Artifact(
             f"predictions_of_{model_name}_on_{dataset_name}",
@@ -384,7 +346,9 @@ def save_all_fusion(
     return predictions[2]["test_matthews_correlation"]
 
 
-def training_script(small=True, log=True, task_parameters={}):
+def training_script(small=True, log=True, task_parameters=None):
+    if task_parameters is None:
+        task_parameters = {}
     os.environ["WANDB_LOG_MODEL"] = "end"
 
     parameters = {
@@ -404,15 +368,15 @@ def training_script(small=True, log=True, task_parameters={}):
         #             'gradient_accumulation_steps', [1, 2, 4, 8]
         #         ),
         # add adapter_parameters
-        #'reduction_factor' : 16,
+        # 'reduction_factor' : 16,
         #         'reduction_factor' : trial.suggest_categorical(
         #             'reduction_factor', [2, 4, 16]
         #         ),
-        #'non_linearity' : 'swish',  # trial.suggest_categorical('non_linearity', ['swish', 'gelu', 'relu']),
-        #'original_ln_before' : False,  # trial.suggest_categorical('original_ln_after', choices=[False, True]),
-        #'original_ln_after' : True,
+        # 'non_linearity' : 'swish',  # trial.suggest_categorical('non_linearity', ['swish', 'gelu', 'relu']),
+        # 'original_ln_before' : False,  # trial.suggest_categorical('original_ln_after', choices=[False, True]),
+        # 'original_ln_after' : True,
         #         #phm
-        #'phm_layer': False,
+        # 'phm_layer': False,
         #         'phm_layer' : trial.suggest_categorical(name='phm_layer', choices=[False, True]), 'phm_dim' : 4,
         #         'factorized_phm_W' : True, 'shared_W_phm' : False, 'shared_phm_rule' : True,
         #         'factorized_phm_rule' : False, 'phm_c_init' : 'normal', 'phm_init_range' : 0.0001,
@@ -448,7 +412,7 @@ def training_script(small=True, log=True, task_parameters={}):
     print("task_parameters", task_parameters)  # This way I see them in wandb log
     print("parameters", parameters)  # This way I see them in wandb log
 
-    dataset_art = run.use_artifact(dataset_art_name, type="6mers")
+    #    dataset_art = run.use_artifact(dataset_art_name, type="6mers")
 
     model_config, model = load_adapter_model(parameters)
     # add adapter and head
@@ -514,7 +478,7 @@ def training_script(small=True, log=True, task_parameters={}):
     # train
     trainer.train()
 
-    score = save_all(
+    score = save_all_fusion(
         run,
         trainer,
         model,
@@ -550,7 +514,7 @@ if __name__ == "__main__":
         #             os.mkdir(f"./train_adapter_{task}/resluts")
 
         # dataset_name = f"{organism}_{feature}_{task}_{length}"
-        project_name = f"Fusions"
+        project_name = "Fusions"
         model_name = f"DNABERT_fusion_{fusion_name}_on_{dataset_name}"
         notebook_name = f"fusion_{fusion_name}_on_{dataset_name}"  # just convenience
         group = f"{organism}_{task}"
