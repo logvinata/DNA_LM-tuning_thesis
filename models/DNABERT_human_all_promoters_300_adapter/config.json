@@ -1,0 +1,95 @@
+{
+  "_name_or_path": "zhihan1996/DNA_bert_6",
+  "adapters": {
+    "adapters": {
+      "human_all_promoters_300": "690d1c53cc73135a"
+    },
+    "config_map": {
+      "690d1c53cc73135a": {
+        "adapter_residual_before_ln": false,
+        "cross_adapter": false,
+        "factorized_phm_W": true,
+        "factorized_phm_rule": false,
+        "hypercomplex_nonlinearity": "glorot-uniform",
+        "init_weights": "bert",
+        "inv_adapter": null,
+        "inv_adapter_reduction_factor": null,
+        "is_parallel": false,
+        "learn_phm": true,
+        "leave_out": [],
+        "ln_after": false,
+        "ln_before": false,
+        "mh_adapter": false,
+        "non_linearity": "swish",
+        "original_ln_after": true,
+        "original_ln_before": false,
+        "output_adapter": true,
+        "phm_bias": true,
+        "phm_c_init": "normal",
+        "phm_dim": 4,
+        "phm_init_range": 0.0001,
+        "phm_layer": false,
+        "phm_rank": 1,
+        "reduction_factor": 16,
+        "residual_before_ln": true,
+        "scaling": 1.0,
+        "shared_W_phm": false,
+        "shared_phm_rule": true,
+        "use_gating": false
+      }
+    },
+    "fusion_config_map": {},
+    "fusions": {}
+  },
+  "architectures": [
+    "BertModelWithHeads"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "auto_map": {
+    "AutoConfig": "configuration_bert.BertConfig",
+    "AutoModel": "dnabert_layer.BertModel",
+    "AutoModelForMaskedLM": "dnabert_layer.BertForMaskedLM",
+    "AutoModelForPreTraining": "dnabert_layer.BertForPreTraining",
+    "AutoModelForSequenceClassification": "dnabert_layer.DNABertForSequenceClassification"
+  },
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_ids": 0,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "num_rnn_layer": 1,
+  "output_past": true,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "prediction_heads": {
+    "human_all_promoters_300": {
+      "activation_function": "tanh",
+      "bias": true,
+      "head_type": "classification",
+      "label2id": {
+        "LABEL_0": 0,
+        "LABEL_1": 1
+      },
+      "layers": 2,
+      "num_labels": 2,
+      "use_pooler": false
+    }
+  },
+  "rnn": "lstm",
+  "rnn_dropout": 0.0,
+  "rnn_hidden": 768,
+  "split": 10,
+  "torch_dtype": "float32",
+  "transformers_version": "4.26.1",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 4101
+}
