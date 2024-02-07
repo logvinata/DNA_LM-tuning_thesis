@@ -8,6 +8,7 @@ import sys
 
 import torch
 
+
 if torch.cuda.is_available():
     print(torch.cuda.get_device_name(0))
 else:
@@ -15,21 +16,16 @@ else:
     sys.exit(1)
 
 import argparse
-import csv
 import os
 import random
 
-import datasets
 import evaluate as eval
 import numpy as np
 import optuna
 import pandas as pd
-import sklearn
-import transformers
 import wandb
 from datasets import load_dataset
 from optuna.integration.wandb import WeightsAndBiasesCallback
-from sklearn import metrics
 from transformers import (
     AdapterConfig,
     AutoConfig,
@@ -161,9 +157,7 @@ def compute_metrics(val_pred):
     combined_metrics = eval.combine([accuracy, precision, recall, f1, mcc])
 
     # Compute metrics
-    metrics_scores = combined_metrics.compute(
-        predictions=predictions, references=labels
-    )
+    metrics_scores = combined_metrics.compute(predictions=predictions, references=labels)
 
     return metrics_scores
 
@@ -202,7 +196,7 @@ def save_all(run, trainer, test):
     description = (
         f"{task_name} predictions with probabilities from model after run {run.name}"
     )
-    prob_table = wandb.Table(dataframe=df)
+
     model_pred = wandb.Artifact(
         f"DNABERT_{task_name}_pred",
         type="full tuned model predictions on test",
@@ -233,9 +227,9 @@ def save_all(run, trainer, test):
         print(key_name, "added to summary")
 
     # confusion matrix
-    confusion_matrix = metrics.confusion_matrix(
-        df["label"], df["prediction"], labels=[0, 1]
-    )
+    # confusion_matrix = metrics.confusion_matrix(
+    #     df["label"], df["prediction"], labels=[0, 1]
+    # )
     wandb.log(
         {
             "confusion_matrix": wandb.plot.confusion_matrix(
@@ -317,7 +311,7 @@ def training_script(trial=optuna.trial.Trial, small=True, log=True):
 
     # log the data usage
     run.use_artifact(
-        f"logvinata/DNA_BERT_promoters_2000/promoters_2000_splitted_6_mers:v0",
+        "logvinata/DNA_BERT_promoters_2000/promoters_2000_splitted_6_mers:v0",
         type="6mers",
     )
     # logvinata/DNA_BERT_promoters_2000/promoters_2000_splitted_6_mers:v0', type='6mers'
@@ -330,13 +324,6 @@ def training_script(trial=optuna.trial.Trial, small=True, log=True):
     # load and tokenize data
     train_6mers, val_6mers, test_6mers = load_data(small=small)
     train, val, test = tokenize_data(train_6mers, val_6mers, test_6mers)
-
-    # define metrics
-    accuracy = eval.load("accuracy")
-    precision = eval.load("precision")
-    recall = eval.load("recall")
-    f1 = eval.load("f1")
-    mcc = eval.load("matthews_correlation")
 
     # set TrainingArguments for Trainer
     #     if small:
@@ -432,7 +419,7 @@ if __name__ == "__main__":
     data_path = f"../../datasets/{task_type}/{task_name}/"
     split_path = data_path + "train-val-test_split/"
 
-    n_trials = 2 if small == True else 14
+    n_trials = 2 if small is True else 14
 
     wandbc = WeightsAndBiasesCallback(
         metric_name="matthews_correlation", wandb_kwargs=wandb_kwargs
@@ -460,10 +447,10 @@ if __name__ == "__main__":
 
     with open("optuna_results.txt", "a") as f:
         f.write(f"Number of finished trials: {len(study.trials)}")
-        if small == True:
+        if small:
             f.write("This is a test")
         f.write("Best trial:")
         f.write(f"  Value: {trial.value}")
-        f.write(f"  Params: ")
+        f.write("  Params: ")
         for key, value in trial.params.items():
             f.write(f"    {key}: {value}")

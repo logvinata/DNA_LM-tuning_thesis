@@ -5,31 +5,27 @@
 
 # Import
 
-import csv
 import os
 import random
 import sys
 
-import datasets
 import evaluate as eval
 import numpy as np
 import pandas as pd
-import sklearn
 import torch
-import transformers
 import wandb
 from datasets import load_dataset
 from sklearn import metrics
 from transformers import (
     AdapterConfig,
     AutoConfig,
-    AutoModelForSequenceClassification,
     AutoTokenizer,
     BertModelWithHeads,
     EarlyStoppingCallback,
     Trainer,
     TrainingArguments,
 )
+
 
 # util functions
 # from train_utils import (
@@ -161,9 +157,7 @@ def compute_metrics(val_pred):
     combined_metrics = eval.combine([accuracy, precision, recall, f1, mcc])
 
     # Compute metrics
-    metrics_scores = combined_metrics.compute(
-        predictions=predictions, references=labels
-    )
+    metrics_scores = combined_metrics.compute(predictions=predictions, references=labels)
 
     return metrics_scores
 
@@ -206,9 +200,6 @@ def save_all(run, trainer, test, save_model=False, save_adapter=False, is_sweep=
 
     #     # predictions
 
-    description = (
-        f"{model_name} predictions with probabilities from model after run {run.name}"
-    )
     if not is_sweep:
         model_pred = wandb.Artifact(
             f"predictions_of_{model_name}_on_{dataset_name}",
@@ -276,7 +267,7 @@ if __name__ == "__main__":
         organism, feature, task, length = dataset_name.split("_")
         print(organism, task, feature, length)
         # dataset_name = f"{organism}_{feature}_{task}_{length}"
-        project_name = f"train_on_GUE"
+        project_name = "train_on_GUE"
         model_name = f"DNABERT_{dataset_name}_adapter"
         notebook_name = f"{model_name}_baseline"  # just convenience
         group = f"{organism}_{task}"
