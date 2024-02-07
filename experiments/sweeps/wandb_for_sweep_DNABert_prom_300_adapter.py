@@ -12,6 +12,7 @@ import numpy as np
 import torch
 import wandb
 from datasets import load_dataset
+
 # from sklearn import metrics
 from transformers import (
     AdapterConfig,
@@ -74,6 +75,7 @@ parameters = {
     "original_ln_after": True,
     "phm_param": phm_param,
 }
+
 
 # the model is really unstable
 # this has to be set before loading the model and tokenizer
@@ -327,11 +329,11 @@ def training_script(parameters=parameters, small=True, log=True):
     train, val, test = tokenize_data(train_6mers, val_6mers, test_6mers)
 
     # define metrics
-    accuracy = eval.load("accuracy")
-    precision = eval.load("precision")
-    recall = eval.load("recall")
-    f1 = eval.load("f1")
-    mcc = eval.load("matthews_correlation")
+    #    accuracy = eval.load("accuracy")
+    #    precision = eval.load("precision")
+    #    recall = eval.load("recall")
+    #    f1 = eval.load("f1")
+    #    mcc = eval.load("matthews_correlation")
 
     # set TrainingArguments for Trainer
     if small:
