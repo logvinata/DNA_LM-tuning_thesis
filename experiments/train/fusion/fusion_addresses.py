@@ -1,9 +1,100 @@
-GUE_human_tfs = ['./adapters/DNABERT_human_0_tf_100_adapter/human_0_tf_100', './adapters/DNABERT_human_2_tf_100_adapter/human_2_tf_100', './adapters/DNABERT_human_3_tf_100_adapter/human_3_tf_100', './adapters/DNABERT_human_4_tf_100_adapter/human_4_tf_100']
-GUE_mouse_tfs = ['./adapters/DNABERT_mouse_0_tf_100_adapter/mouse_0_tf_100', './adapters/DNABERT_mouse_1_tf_100_adapter/mouse_1_tf_100', './adapters/DNABERT_mouse_2_tf_100_adapter/mouse_2_tf_100', './adapters/DNABERT_mouse_3_tf_100_adapter/mouse_3_tf_100', './adapters/DNABERT_mouse_4_tf_100_adapter/mouse_4_tf_100']
-GUE_mouse_tfs = ['./adapters/DNABERT_mouse_0_tf_100_adapter/mouse_0_tf_100', './adapters/DNABERT_mouse_1_tf_100_adapter/mouse_1_tf_100', './adapters/DNABERT_mouse_2_tf_100_adapter/mouse_2_tf_100', './adapters/DNABERT_mouse_3_tf_100_adapter/mouse_3_tf_100', './adapters/DNABERT_mouse_4_tf_100_adapter/mouse_4_tf_100']
-GUE_all_tfs = ['./adapters/DNABERT_human_0_tf_100_adapter/human_0_tf_100', './adapters/DNABERT_human_2_tf_100_adapter/human_2_tf_100', './adapters/DNABERT_human_3_tf_100_adapter/human_3_tf_100', './adapters/DNABERT_human_4_tf_100_adapter/human_4_tf_100', './adapters/DNABERT_mouse_0_tf_100_adapter/mouse_0_tf_100', './adapters/DNABERT_mouse_1_tf_100_adapter/mouse_1_tf_100', './adapters/DNABERT_mouse_2_tf_100_adapter/mouse_2_tf_100', './adapters/DNABERT_mouse_3_tf_100_adapter/mouse_3_tf_100', './adapters/DNABERT_mouse_4_tf_100_adapter/mouse_4_tf_100']
-GUE_human_promoters = ['./adapters/DNABERT_human_all-core_promoters_300_adapter/human_all-core_promoters_300', './adapters/DNABERT_human_all_promoters_300_adapter/human_all_promoters_300', './adapters/DNABERT_human_nontata-core_promoters_300_adapter/human_nontata-core_promoters_300', './adapters/DNABERT_human_nontata_promoters_300_adapter/human_nontata_promoters_300', './adapters/DNABERT_human_tata-core_promoters_300_adapter/human_tata-core_promoters_300', './adapters/DNABERT_human_tata_promoters_300_adapter/human_tata_promoters_300']
-GUE_yeast_EMP = ['./adapters/DNABERT_yeast_H3_EMP_500_adapter/yeast_H3_EMP_500', './adapters/DNABERT_yeast_H3K14ac_EMP_500_adapter/yeast_H3K14ac_EMP_500', './adapters/DNABERT_yeast_H3K36me3_EMP_500_adapter/yeast_H3K36me3_EMP_500', './adapters/DNABERT_yeast_H3K4me1_EMP_500_adapter/yeast_H3K4me1_EMP_500', './adapters/DNABERT_yeast_H3K4me3_EMP_500_adapter/yeast_H3K4me3_EMP_500', './adapters/DNABERT_yeast_H3K79me3_EMP_500_adapter/yeast_H3K79me3_EMP_500', './adapters/DNABERT_yeast_H3K9ac_EMP_500_adapter/yeast_H3K9ac_EMP_500', './adapters/DNABERT_yeast_H4_EMP_500_adapter/yeast_H4_EMP_500', './adapters/DNABERT_yeast_H4ac_EMP_500_adapter/yeast_H4ac_EMP_500', './adapters/DNABERT_yeast_H3K4me2_EMP_500_adapter/yeast_H3K4me2_EMP_500']
-GUE_human_splicing = ['./adapters/DNABERT_human_reconstructed_splicing_400_adapter/human_reconstructed_splicing_400']
-GUE_tfs_promoters_splicing = ['./adapters/DNABERT_human_0_tf_100_adapter/human_0_tf_100', './adapters/DNABERT_human_2_tf_100_adapter/human_2_tf_100', './adapters/DNABERT_human_3_tf_100_adapter/human_3_tf_100', './adapters/DNABERT_human_4_tf_100_adapter/human_4_tf_100', './adapters/DNABERT_mouse_0_tf_100_adapter/mouse_0_tf_100', './adapters/DNABERT_mouse_1_tf_100_adapter/mouse_1_tf_100', './adapters/DNABERT_mouse_2_tf_100_adapter/mouse_2_tf_100', './adapters/DNABERT_mouse_3_tf_100_adapter/mouse_3_tf_100', './adapters/DNABERT_mouse_4_tf_100_adapter/mouse_4_tf_100', './adapters/DNABERT_human_all-core_promoters_300_adapter/human_all-core_promoters_300', './adapters/DNABERT_human_all_promoters_300_adapter/human_all_promoters_300', './adapters/DNABERT_human_nontata-core_promoters_300_adapter/human_nontata-core_promoters_300', './adapters/DNABERT_human_nontata_promoters_300_adapter/human_nontata_promoters_300', './adapters/DNABERT_human_tata-core_promoters_300_adapter/human_tata-core_promoters_300', './adapters/DNABERT_human_tata_promoters_300_adapter/human_tata_promoters_300', './adapters/DNABERT_human_reconstructed_splicing_400_adapter/human_reconstructed_splicing_400']
-GUE_all = ['./adapters/DNABERT_human_0_tf_100_adapter/human_0_tf_100', './adapters/DNABERT_human_2_tf_100_adapter/human_2_tf_100', './adapters/DNABERT_human_3_tf_100_adapter/human_3_tf_100', './adapters/DNABERT_human_4_tf_100_adapter/human_4_tf_100', './adapters/DNABERT_mouse_0_tf_100_adapter/mouse_0_tf_100', './adapters/DNABERT_mouse_1_tf_100_adapter/mouse_1_tf_100', './adapters/DNABERT_mouse_2_tf_100_adapter/mouse_2_tf_100', './adapters/DNABERT_mouse_3_tf_100_adapter/mouse_3_tf_100', './adapters/DNABERT_mouse_4_tf_100_adapter/mouse_4_tf_100', './adapters/DNABERT_human_all-core_promoters_300_adapter/human_all-core_promoters_300', './adapters/DNABERT_human_all_promoters_300_adapter/human_all_promoters_300', './adapters/DNABERT_human_nontata-core_promoters_300_adapter/human_nontata-core_promoters_300', './adapters/DNABERT_human_nontata_promoters_300_adapter/human_nontata_promoters_300', './adapters/DNABERT_human_tata-core_promoters_300_adapter/human_tata-core_promoters_300', './adapters/DNABERT_human_tata_promoters_300_adapter/human_tata_promoters_300', './adapters/DNABERT_human_reconstructed_splicing_400_adapter/human_reconstructed_splicing_400', './adapters/DNABERT_yeast_H3_EMP_500_adapter/yeast_H3_EMP_500', './adapters/DNABERT_yeast_H3K14ac_EMP_500_adapter/yeast_H3K14ac_EMP_500', './adapters/DNABERT_yeast_H3K36me3_EMP_500_adapter/yeast_H3K36me3_EMP_500', './adapters/DNABERT_yeast_H3K4me1_EMP_500_adapter/yeast_H3K4me1_EMP_500', './adapters/DNABERT_yeast_H3K4me3_EMP_500_adapter/yeast_H3K4me3_EMP_500', './adapters/DNABERT_yeast_H3K79me3_EMP_500_adapter/yeast_H3K79me3_EMP_500', './adapters/DNABERT_yeast_H3K9ac_EMP_500_adapter/yeast_H3K9ac_EMP_500', './adapters/DNABERT_yeast_H4_EMP_500_adapter/yeast_H4_EMP_500', './adapters/DNABERT_yeast_H4ac_EMP_500_adapter/yeast_H4ac_EMP_500', './adapters/DNABERT_yeast_H3K4me2_EMP_500_adapter/yeast_H3K4me2_EMP_500']
+GUE_human_tfs = [
+    "./adapters/DNABERT_human_0_tf_100_adapter/human_0_tf_100",
+    "./adapters/DNABERT_human_2_tf_100_adapter/human_2_tf_100",
+    "./adapters/DNABERT_human_3_tf_100_adapter/human_3_tf_100",
+    "./adapters/DNABERT_human_4_tf_100_adapter/human_4_tf_100",
+]
+GUE_mouse_tfs = [
+    "./adapters/DNABERT_mouse_0_tf_100_adapter/mouse_0_tf_100",
+    "./adapters/DNABERT_mouse_1_tf_100_adapter/mouse_1_tf_100",
+    "./adapters/DNABERT_mouse_2_tf_100_adapter/mouse_2_tf_100",
+    "./adapters/DNABERT_mouse_3_tf_100_adapter/mouse_3_tf_100",
+    "./adapters/DNABERT_mouse_4_tf_100_adapter/mouse_4_tf_100",
+]
+GUE_mouse_tfs = [
+    "./adapters/DNABERT_mouse_0_tf_100_adapter/mouse_0_tf_100",
+    "./adapters/DNABERT_mouse_1_tf_100_adapter/mouse_1_tf_100",
+    "./adapters/DNABERT_mouse_2_tf_100_adapter/mouse_2_tf_100",
+    "./adapters/DNABERT_mouse_3_tf_100_adapter/mouse_3_tf_100",
+    "./adapters/DNABERT_mouse_4_tf_100_adapter/mouse_4_tf_100",
+]
+GUE_all_tfs = [
+    "./adapters/DNABERT_human_0_tf_100_adapter/human_0_tf_100",
+    "./adapters/DNABERT_human_2_tf_100_adapter/human_2_tf_100",
+    "./adapters/DNABERT_human_3_tf_100_adapter/human_3_tf_100",
+    "./adapters/DNABERT_human_4_tf_100_adapter/human_4_tf_100",
+    "./adapters/DNABERT_mouse_0_tf_100_adapter/mouse_0_tf_100",
+    "./adapters/DNABERT_mouse_1_tf_100_adapter/mouse_1_tf_100",
+    "./adapters/DNABERT_mouse_2_tf_100_adapter/mouse_2_tf_100",
+    "./adapters/DNABERT_mouse_3_tf_100_adapter/mouse_3_tf_100",
+    "./adapters/DNABERT_mouse_4_tf_100_adapter/mouse_4_tf_100",
+]
+GUE_human_promoters = [
+    "./adapters/DNABERT_human_all-core_promoters_300_adapter/human_all-core_promoters_300",
+    "./adapters/DNABERT_human_all_promoters_300_adapter/human_all_promoters_300",
+    "./adapters/DNABERT_human_nontata-core_promoters_300_adapter/human_nontata-core_promoters_300",
+    "./adapters/DNABERT_human_nontata_promoters_300_adapter/human_nontata_promoters_300",
+    "./adapters/DNABERT_human_tata-core_promoters_300_adapter/human_tata-core_promoters_300",
+    "./adapters/DNABERT_human_tata_promoters_300_adapter/human_tata_promoters_300",
+]
+GUE_yeast_EMP = [
+    "./adapters/DNABERT_yeast_H3_EMP_500_adapter/yeast_H3_EMP_500",
+    "./adapters/DNABERT_yeast_H3K14ac_EMP_500_adapter/yeast_H3K14ac_EMP_500",
+    "./adapters/DNABERT_yeast_H3K36me3_EMP_500_adapter/yeast_H3K36me3_EMP_500",
+    "./adapters/DNABERT_yeast_H3K4me1_EMP_500_adapter/yeast_H3K4me1_EMP_500",
+    "./adapters/DNABERT_yeast_H3K4me3_EMP_500_adapter/yeast_H3K4me3_EMP_500",
+    "./adapters/DNABERT_yeast_H3K79me3_EMP_500_adapter/yeast_H3K79me3_EMP_500",
+    "./adapters/DNABERT_yeast_H3K9ac_EMP_500_adapter/yeast_H3K9ac_EMP_500",
+    "./adapters/DNABERT_yeast_H4_EMP_500_adapter/yeast_H4_EMP_500",
+    "./adapters/DNABERT_yeast_H4ac_EMP_500_adapter/yeast_H4ac_EMP_500",
+    "./adapters/DNABERT_yeast_H3K4me2_EMP_500_adapter/yeast_H3K4me2_EMP_500",
+]
+GUE_human_splicing = [
+    "./adapters/DNABERT_human_reconstructed_splicing_400_adapter/human_reconstructed_splicing_400"
+]
+GUE_tfs_promoters_splicing = [
+    "./adapters/DNABERT_human_0_tf_100_adapter/human_0_tf_100",
+    "./adapters/DNABERT_human_2_tf_100_adapter/human_2_tf_100",
+    "./adapters/DNABERT_human_3_tf_100_adapter/human_3_tf_100",
+    "./adapters/DNABERT_human_4_tf_100_adapter/human_4_tf_100",
+    "./adapters/DNABERT_mouse_0_tf_100_adapter/mouse_0_tf_100",
+    "./adapters/DNABERT_mouse_1_tf_100_adapter/mouse_1_tf_100",
+    "./adapters/DNABERT_mouse_2_tf_100_adapter/mouse_2_tf_100",
+    "./adapters/DNABERT_mouse_3_tf_100_adapter/mouse_3_tf_100",
+    "./adapters/DNABERT_mouse_4_tf_100_adapter/mouse_4_tf_100",
+    "./adapters/DNABERT_human_all-core_promoters_300_adapter/human_all-core_promoters_300",
+    "./adapters/DNABERT_human_all_promoters_300_adapter/human_all_promoters_300",
+    "./adapters/DNABERT_human_nontata-core_promoters_300_adapter/human_nontata-core_promoters_300",
+    "./adapters/DNABERT_human_nontata_promoters_300_adapter/human_nontata_promoters_300",
+    "./adapters/DNABERT_human_tata-core_promoters_300_adapter/human_tata-core_promoters_300",
+    "./adapters/DNABERT_human_tata_promoters_300_adapter/human_tata_promoters_300",
+    "./adapters/DNABERT_human_reconstructed_splicing_400_adapter/human_reconstructed_splicing_400",
+]
+GUE_all = [
+    "./adapters/DNABERT_human_0_tf_100_adapter/human_0_tf_100",
+    "./adapters/DNABERT_human_2_tf_100_adapter/human_2_tf_100",
+    "./adapters/DNABERT_human_3_tf_100_adapter/human_3_tf_100",
+    "./adapters/DNABERT_human_4_tf_100_adapter/human_4_tf_100",
+    "./adapters/DNABERT_mouse_0_tf_100_adapter/mouse_0_tf_100",
+    "./adapters/DNABERT_mouse_1_tf_100_adapter/mouse_1_tf_100",
+    "./adapters/DNABERT_mouse_2_tf_100_adapter/mouse_2_tf_100",
+    "./adapters/DNABERT_mouse_3_tf_100_adapter/mouse_3_tf_100",
+    "./adapters/DNABERT_mouse_4_tf_100_adapter/mouse_4_tf_100",
+    "./adapters/DNABERT_human_all-core_promoters_300_adapter/human_all-core_promoters_300",
+    "./adapters/DNABERT_human_all_promoters_300_adapter/human_all_promoters_300",
+    "./adapters/DNABERT_human_nontata-core_promoters_300_adapter/human_nontata-core_promoters_300",
+    "./adapters/DNABERT_human_nontata_promoters_300_adapter/human_nontata_promoters_300",
+    "./adapters/DNABERT_human_tata-core_promoters_300_adapter/human_tata-core_promoters_300",
+    "./adapters/DNABERT_human_tata_promoters_300_adapter/human_tata_promoters_300",
+    "./adapters/DNABERT_human_reconstructed_splicing_400_adapter/human_reconstructed_splicing_400",
+    "./adapters/DNABERT_yeast_H3_EMP_500_adapter/yeast_H3_EMP_500",
+    "./adapters/DNABERT_yeast_H3K14ac_EMP_500_adapter/yeast_H3K14ac_EMP_500",
+    "./adapters/DNABERT_yeast_H3K36me3_EMP_500_adapter/yeast_H3K36me3_EMP_500",
+    "./adapters/DNABERT_yeast_H3K4me1_EMP_500_adapter/yeast_H3K4me1_EMP_500",
+    "./adapters/DNABERT_yeast_H3K4me3_EMP_500_adapter/yeast_H3K4me3_EMP_500",
+    "./adapters/DNABERT_yeast_H3K79me3_EMP_500_adapter/yeast_H3K79me3_EMP_500",
+    "./adapters/DNABERT_yeast_H3K9ac_EMP_500_adapter/yeast_H3K9ac_EMP_500",
+    "./adapters/DNABERT_yeast_H4_EMP_500_adapter/yeast_H4_EMP_500",
+    "./adapters/DNABERT_yeast_H4ac_EMP_500_adapter/yeast_H4ac_EMP_500",
+    "./adapters/DNABERT_yeast_H3K4me2_EMP_500_adapter/yeast_H3K4me2_EMP_500",
+]

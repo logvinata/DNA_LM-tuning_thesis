@@ -16,7 +16,7 @@ metric:
 
 # Parameters space to search
 parameters:
-  
+
   learning_rate:
     distribution: log_uniform_values
     min: 1e-5
@@ -27,21 +27,20 @@ parameters:
 #     values: [True, False]
   original_ln_before:
     values: [True, False]
-  weight_decay: 
+  weight_decay:
     distribution: log_uniform_values
     min: 0.0002
     max: 0.1
   reduction_factor:
     values: [2, 8, 16]
-  warmup_ratio:  
+  warmup_ratio:
     values: [0.1, 0.2]
-  phm_param.phm_layer: 
+  phm_param.phm_layer:
       values: [True, True, True, True, True, True, True, True, True, False]
-#   non_linearity: 
+#   non_linearity:
 #     values: ['swish', 'gelu']
-#   grad_accum: 
+#   grad_accum:
 #     value: [False, True],
-#   gradient_accumulation_steps: 
+#   gradient_accumulation_steps:
 #       value: [1, 2, 4]
   #grad_accumulation
-  

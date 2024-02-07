@@ -5,7 +5,6 @@ from transformers import BertConfig as TransformersBertConfig
 
 
 class BertConfig(TransformersBertConfig):
-
     def __init__(
         self,
         **kwargs,
@@ -20,4 +19,3 @@ class BertConfig(TransformersBertConfig):
                 (otherwise, Flash Attention will be off by default). Defaults to 0.0.
         """
         super().__init__(**kwargs)
-        
